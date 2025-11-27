@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Animace</title>
+        <style>
+            body {
+                height: 100vh;
+                background-color: #1c4638;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                position: relative;
+            }
+            body.zmena {
+                animation: zmenaPozadi 5.5s linear alternate,
+                    zmenaPozadi 5.5s 5.5s /*delay*/ linear reverse;
+            }
+            @keyframes zmenaPozadi {
+                0% {
+                    background-color: rgb(28, 70, 56);
+                }
+                50% {
+                    background-color: rgb(87, 199, 133);
+                }
+                100% {
+                    background-color: rgb(237, 221, 83);
+                }
+            }
+
+            #tlacitko {
+                position: absolute;
+                align-items: center;
+                top: 40px;
+                padding: 20px 40px;
+                border: none;
+                background: rgb(241, 252, 142);
+                border-radius: 30px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            #tlacitko:hover {
+                background-color: blue;
+            }
+
+            .ctverec {
+                position: absolute;
+                left: -320px;
+                height: 300px;
+                width: 300px;
+                background-color: orange;
+                border-radius: 5px;
+            }
+            .ctverec:hover {
+                background-color: #875fc7;
+            }
+            .ctverec.zmena2 {
+                animation: pohybCtverce 5s linear forwards,
+                    pohybCtverce 5s 6s /*delay*/ linear reverse forwards;
+            }
+
+            @keyframes pohybCtverce {
+                0% {
+                    transform: translateX(-200%) rotate(0deg) scale(4);
+                }
+                100% {
+                    transform: translateX(800%) rotate(360deg) scale(1);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <button id="tlacitko">přejezd</button>
+
+        <div class="ctverec"></div>
+        <div class="pokus"></div>
+
+        <script>
+            const tlacitko = document.querySelector("#tlacitko")
+            const ctverec = document.querySelector(".ctverec")
+
+            tlacitko.addEventListener("click", function () {
+                document.body.classList.toggle("zmena")
+                ctverec.classList.toggle("zmena2")
+            })
+        </script>
+    </body>
+</html>
